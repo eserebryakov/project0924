@@ -1,0 +1,13 @@
+[flake8]
+max-line-length = 120
+ignore = E231, E202, E501, W605, F841, W503, E203, W503
+per-file-ignores = __init__.py:F401,
+                    base_model.py:W191,E101,W291
+exclude = Lib,
+          Scripts,
+          *platform_gui/**,
+          *infrastructure/**,
+          *gantt/**,
+          *tests_infrastructure_team/**,
+          *tests_platform_gui/**
+count = true
