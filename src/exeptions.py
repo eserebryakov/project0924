@@ -1,0 +1,2 @@
+class ZeroValueError(Exception):
+    pass
