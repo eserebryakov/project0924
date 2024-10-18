@@ -3,6 +3,31 @@ import pytest
 from src.exeptions import ZeroValueError
 from src.quadratic_equation import QuadraticEquation
 
+_ALL_TYPES = (
+    None,
+    True,
+    "str",
+    (1,),
+    bytes(b"bytes"),
+    frozenset(range(2)),
+    [1, 2],
+    {1: 2},
+    set(range(2)),
+    bytearray(b"bytearray"),
+)
+
+data_for_test = []
+for arg_ in range(4):
+    for type_ in _ALL_TYPES:
+        if arg_ == 0:
+            data_for_test.append((type_, 1, 1, 1))
+        elif arg_ == 1:
+            data_for_test.append((1, type_, 1, 1))
+        if arg_ == 2:
+            data_for_test.append((1, 1, type_, 1))
+        if arg_ == 3:
+            data_for_test.append((1, 1, 1, type_))
+
 
 class TestQuadraticEquation:
     @pytest.fixture(autouse=True)
@@ -25,3 +50,11 @@ class TestQuadraticEquation:
         """П9. Тест проверяет, что коэффициент 'a' не может быть равен 0."""
         with pytest.raises(ZeroValueError):
             self.solve(a=0, b=0, c=0)
+
+    @pytest.mark.parametrize(
+        "a, b, c, e", data_for_test, ids=[f"{type(val[0])} {type(val[1])} {type(val[2])}" for val in data_for_test]
+    )
+    def test_another_types(self, a, b, c, e):
+        """П13. Тест проверяет что другие типы данных (отличные от int и float) аргументов не валидны."""
+        with pytest.raises(AssertionError):
+            self.solve(a, b, c, e)

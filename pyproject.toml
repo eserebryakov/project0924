@@ -27,6 +27,7 @@ isort = "^5.13.2"
 pre-commit-hooks = "^5.0.0"
 pre-commit = "^4.0.1"
 autoflake = "^2.3.1"
+assertpy = "^1.1"
 
 
 [build-system]
