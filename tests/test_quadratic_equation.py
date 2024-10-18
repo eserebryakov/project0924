@@ -11,3 +11,7 @@ class TestQuadraticEquation:
     def test_there_is_no_roots(self):
         """П3. Тест проверяет, что для уравнения x^2+1 = 0 корней нет."""
         assert self.solve(a=1, b=0, c=1) == []
+
+    def test_there_are_two_roots(self):
+        """П5. Тест проверяет, что для уравнения x^2-1 = 0 есть два корня."""
+        assert self.solve(a=1, b=0, c=-1) == (1.0, -1.0)
