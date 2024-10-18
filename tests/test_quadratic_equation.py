@@ -19,7 +19,7 @@ class TestQuadraticEquation:
 
     def test_there_is_one_root(self):
         """П7. Тест проверяет, что для уравнения x^2+2x+1 = 0 есть один корень."""
-        assert self.solve(a=1, b=2, c=1) == (-1.0, -1.0)
+        assert self.solve(a=2, b=3, c=1, e=1.5) == (-0.75, -0.75)
 
     def test_coefficient_cannot_be_equal_to_zero(self):
         """П9. Тест проверяет, что коэффициент 'a' не может быть равен 0."""
