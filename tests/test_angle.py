@@ -67,6 +67,11 @@ class TestAngle:
         with pytest.raises(AttributeError):
             self.angle(1, 2) + 5
 
+    def test_unacceptable_add_angle_different_parts(self):
+        """Тест проверяет неуспешную операцию сложения векторов если n разное"""
+        with pytest.raises(AssertionError):
+            self.angle(1, 2) + self.angle(1, 3)
+
     def test_acceptable_equals_angle(self):
         """Тест проверяет успешную операцию эквивалентности векторов"""
         assert self.angle(1, 3) == self.angle(1, 3)
