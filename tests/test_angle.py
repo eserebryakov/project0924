@@ -51,10 +51,11 @@ class TestAngle:
         with pytest.raises(AssertionError):
             assert self.angle(x, y)
 
-    def test_direction_is_greater_than_number_of_parts(self):
-        """Тест проверяет что создание угла с направлением больше чем кол-ва частей приводит к ошибке"""
+    def test_direction_is_greater_than_or_equals_number_of_parts(self):
+        """Тест проверяет что создание угла с направлением больше (либо равно) чем кол-ва частей приводит к ошибке"""
         with pytest.raises(AssertionError):
             assert self.angle(2, 1)
+            assert self.angle(1, 1)
 
     def test_acceptable_add_angle(self):
         """Тест проверяет успешную операцию сложения векторов"""
