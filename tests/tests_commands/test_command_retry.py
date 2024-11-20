@@ -2,7 +2,7 @@ from queue import Queue
 
 import pytest
 
-from src.spacebattle.commands import Command, RetryCommand
+from src.spacebattle.commands import Command, Retry2Command, RetryCommand
 
 
 class MockCommand(Command):
@@ -18,9 +18,9 @@ class TestRetryCommand:
     def setup(self):
         self.queue = Queue()
         self.command = MockCommand(queue=self.queue)
-        self.retry_command = RetryCommand(self.command)
 
-    def test_retry_command(self):
+    @pytest.mark.parametrize("command", [RetryCommand, Retry2Command])
+    def test_retry_command(self, command):
         """Тест проверяет команду которая, повторяет другую команду"""
-        self.retry_command.execute()
+        command(self.command).execute()
         assert self.queue.get() == self.command

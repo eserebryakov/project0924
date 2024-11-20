@@ -20,7 +20,6 @@ class ExceptionHandler:
     @staticmethod
     def handle(command: Command, exception: Exception) -> Command:
         ct, et = type(command), type(exception)
-        print(ct)
         return ExceptionHandler.store.get(ct, {et: lambda c, e: DefaultCommand(command=c, exception=e)}).get(
             et, lambda c, e: DefaultCommand(command=c, exception=e)
         )(command, exception)

@@ -35,6 +35,7 @@ class TestHandlerTwiceRepeatCommand:
     def test_handle_twice_repeat_command(self):
         """Тест проверяет стратегию обработки исключения - повторить два раза, потом записать в лог."""
         exception_handler_twice_repeat_command(command=self.command, exception=self.exception, queue=self.queue)
+
         try:
             self.command.execute()
         except MockException as exception:
