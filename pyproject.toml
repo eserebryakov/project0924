@@ -5,6 +5,14 @@ description = ""
 authors = ["Евгений Серебряков <ENiSerebryakov@rosatom.ru>"]
 readme = "README.md"
 
+[tool.pytest.ini_options]
+log_format = "[%(levelname)s] %(asctime)s.%(msecs)03d %(message)s"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+log_auto_indent = true
+addopts = [
+    "--log-cli-level=DEBUG",
+]
+
 [tool.black]
 line-length = 120
 
