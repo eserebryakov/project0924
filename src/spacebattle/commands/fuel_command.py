@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 from src.exeptions import CommandException
 from src.spacebattle.fuel import Fuel
 
+from . import Command
+
 
 class BurningObject(ABC):
     """Абстрактный класс (интерфейс) для объекта сжигающего топливо"""
@@ -20,7 +22,7 @@ class BurningObject(ABC):
         ...
 
 
-class BurnFuelCommand:
+class BurnFuelCommand(Command):
     """Класс реализующий сжигание топлива"""
 
     def __init__(self, obj: BurningObject) -> None:
@@ -30,7 +32,7 @@ class BurnFuelCommand:
         self.__obj.set_fuel(self.__obj.get_fuel() - self.__obj.get_velocity())
 
 
-class CheckFuelCommand:
+class CheckFuelCommand(Command):
     """Класс реализующий проверку величины топлива"""
 
     def __init__(self, obj: BurningObject) -> None:
