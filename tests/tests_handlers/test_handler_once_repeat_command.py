@@ -5,7 +5,7 @@ import pytest
 from assertpy import soft_assertions
 
 from src.spacebattle.commands import Command, RetryCommand, WriteCommand
-from src.spacebattle.exception_handler import (
+from src.spacebattle.exceptions.exception_handler import (
     ExceptionHandler,
     exception_handler_once_repeat_command,
 )
