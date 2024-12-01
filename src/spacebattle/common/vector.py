@@ -6,26 +6,16 @@ class Vector:
         with soft_assertions():
             assert type(x) is int
             assert type(y) is int
-        self.__x = x
-        self.__y = y
-
-    @property
-    def x(self) -> int:
-        return self.__x
-
-    @property
-    def y(self) -> int:
-        return self.__y
+        self.x = x
+        self.y = y
 
     def __add__(self, other: "Vector") -> "Vector":
         """Перегрузка оператора '+' для сложения векторов"""
-        self.__x += other.x
-        self.__y += other.y
-        return self
+        return Vector(x=self.x + other.x, y=self.y + other.y)
 
     def __eq__(self, other: "Vector") -> bool:
         """Перегрузка оператора == для сравнения векторов"""
-        return other.x == self.__x and other.y == self.__y if type(other) is Vector else False
+        return other.x == self.x and other.y == self.y if type(other) is Vector else False
 
     def __str__(self) -> str:
-        return f"({self.__x}, {self.__y})"
+        return f"({self.x}, {self.y})"

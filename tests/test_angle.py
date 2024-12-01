@@ -4,7 +4,7 @@ import sys
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.angle import Angle
+from src.spacebattle.common.angle import Angle
 
 # Допустимые значения типов данных (позитивный тест)
 _ACCEPTABLE_VALUES = (sys.maxsize, -sys.maxsize - 1, -1, 0, 1)
