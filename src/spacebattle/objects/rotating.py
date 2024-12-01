@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.spacebattle.angle import Angle
+from src.spacebattle.common.angle import Angle
 
 
 class RotatingObject(ABC):
@@ -17,11 +17,3 @@ class RotatingObject(ABC):
     @abstractmethod
     def get_angular_velocity(self) -> Angle:
         ...
-
-
-class RotateCommand:
-    def __init__(self, obj: RotatingObject) -> None:
-        self.__obj = obj
-
-    def execute(self):
-        self.__obj.set_angle(self.__obj.get_angle() + self.__obj.get_angular_velocity())

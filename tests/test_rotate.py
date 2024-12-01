@@ -1,7 +1,8 @@
 import pytest
 
-from src.spacebattle.angle import Angle
-from src.spacebattle.rotate import RotateCommand, RotatingObject
+from src.spacebattle.commands import RotateCommand
+from src.spacebattle.common.angle import Angle
+from src.spacebattle.objects import RotatingObject
 
 
 class ValidObject(RotatingObject):

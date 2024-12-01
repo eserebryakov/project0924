@@ -1,7 +1,8 @@
 import pytest
 
-from src.spacebattle.move import MoveCommand, MovingObject
-from src.spacebattle.vector import Vector
+from src.spacebattle.commands import MoveCommand
+from src.spacebattle.common.vector import Vector
+from src.spacebattle.objects import MovingObject
 
 
 class ValidObject(MovingObject):
