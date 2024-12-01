@@ -18,7 +18,7 @@ class BurningObject(ABC):
         ...
 
     @abstractmethod
-    def get_velocity(self) -> Fuel:
+    def get_fuel_velocity(self) -> Fuel:
         ...
 
 
@@ -29,7 +29,7 @@ class BurnFuelCommand(Command):
         self.__obj = obj
 
     def execute(self):
-        self.__obj.set_fuel(self.__obj.get_fuel() - self.__obj.get_velocity())
+        self.__obj.set_fuel(self.__obj.get_fuel() - self.__obj.get_fuel_velocity())
 
 
 class CheckFuelCommand(Command):
@@ -39,5 +39,5 @@ class CheckFuelCommand(Command):
         self.__obj = obj
 
     def execute(self):
-        if self.__obj.get_fuel() <= Fuel(0):
+        if (self.__obj.get_fuel() - self.__obj.get_fuel_velocity()) <= Fuel(0):
             raise CommandException("Недостаточно топлива")

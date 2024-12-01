@@ -18,8 +18,7 @@ class Fuel:
 
     def __sub__(self, other: "Fuel") -> "Fuel":
         """Перегрузка оператора '-' для вычитания величины топлива"""
-        self.__value -= other.value
-        return self
+        return Fuel(value=self.__value - other.value)
 
     def __eq__(self, other: "Fuel") -> bool:
         """Перегрузка оператора '==' для сравнения величин топлива"""
