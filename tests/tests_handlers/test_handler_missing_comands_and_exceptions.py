@@ -3,7 +3,7 @@ import logging
 import pytest
 
 from src.spacebattle.commands import Command, WriteCommand
-from src.spacebattle.exception_handler import ExceptionHandler
+from src.spacebattle.exceptions.exception_handler import ExceptionHandler
 
 
 class MockException(Exception):

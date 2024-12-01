@@ -2,7 +2,7 @@ import cmath
 
 from assertpy import soft_assertions
 
-from src.exeptions import ZeroValueError
+from src.spacebattle.exceptions.exeptions import ZeroValueError
 
 
 class QuadraticEquation:

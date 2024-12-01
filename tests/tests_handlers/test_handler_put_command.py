@@ -4,7 +4,7 @@ import pytest
 from assertpy import soft_assertions
 
 from src.spacebattle.commands import Command, WriteCommand
-from src.spacebattle.exception_handler import (
+from src.spacebattle.exceptions.exception_handler import (
     ExceptionHandler,
     exception_handler_put_command,
     exception_handler_put_write_command,

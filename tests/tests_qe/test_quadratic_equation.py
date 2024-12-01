@@ -1,7 +1,7 @@
 import pytest
 
-from src.exeptions import ZeroValueError
-from src.quadratic_equation import QuadraticEquation
+from src.spacebattle.exceptions.exeptions import ZeroValueError
+from src.spacebattle.qe.quadratic_equation import QuadraticEquation
 
 _ALL_TYPES = (
     None,
