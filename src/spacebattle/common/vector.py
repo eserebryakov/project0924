@@ -11,9 +11,7 @@ class Vector:
 
     def __add__(self, other: "Vector") -> "Vector":
         """Перегрузка оператора '+' для сложения векторов"""
-        self.x += other.x
-        self.y += other.y
-        return self
+        return Vector(x=self.x + other.x, y=self.y + other.y)
 
     def __eq__(self, other: "Vector") -> bool:
         """Перегрузка оператора == для сравнения векторов"""

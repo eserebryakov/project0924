@@ -4,7 +4,7 @@ import sys
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.vector import Vector
+from src.spacebattle.common.vector import Vector
 
 # Допустимые значения типов данных (позитивный тест)
 _ACCEPTABLE_VALUES = (sys.maxsize, -sys.maxsize - 1, -1, 0, 1)
