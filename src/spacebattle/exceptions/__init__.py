@@ -1,1 +1,1 @@
-from .exeptions import ZeroValueError
+from .exeptions import CommandException, ZeroValueError

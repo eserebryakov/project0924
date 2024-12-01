@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from src.exeptions import CommandException
-from src.spacebattle.fuel import Fuel
+from src.spacebattle.common.fuel import Fuel
 
 
 class BurningObject(ABC):

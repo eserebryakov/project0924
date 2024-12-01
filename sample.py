@@ -5,7 +5,7 @@ from src.spacebattle.commands.fuel_command import (
     CheckFuelCommand,
 )
 from src.spacebattle.commands.simple_macro_command import SimpleMacroCommand
-from src.spacebattle.fuel import Fuel
+from src.spacebattle.common.fuel import Fuel
 from src.spacebattle.move import MoveCommand, MovingObject
 from src.spacebattle.rotate import RotateCommand, RotatingObject
 from src.spacebattle.vector import Vector

@@ -3,7 +3,7 @@ import sys
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.fuel import Fuel
+from src.spacebattle.common.fuel import Fuel
 
 # Допустимые значения типов данных (позитивный тест)
 _ACCEPTABLE_VALUES = (sys.maxsize, -sys.maxsize - 1, -1, 0, 1)
