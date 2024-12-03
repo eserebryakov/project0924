@@ -1,10 +1,14 @@
 import pytest
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 from src.spacebattle.commands.burn_fuel import BurnFuelCommand
 =======
 from src.spacebattle.commands import BurnFuelCommand
 >>>>>>> d8de736 (DZ3: Добавил домашнее задание по теме Команда)
+=======
+from src.spacebattle.commands.burn_fuel import BurnFuelCommand
+>>>>>>> ed1a774 (DZ4: Добавил домашнее задание по теме Команда)
 from src.spacebattle.common import Fuel
 from src.spacebattle.objects import BurningObject
 

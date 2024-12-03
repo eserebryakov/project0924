@@ -4,12 +4,18 @@ import pytest
 from assertpy import soft_assertions
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 from src.spacebattle.commands.command import Command
 from src.spacebattle.commands.macro import MacroCommand
 from src.spacebattle.commands.put import PutCommand
 =======
 from src.spacebattle.commands import Command, MacroCommand, PutCommand
 >>>>>>> d8de736 (DZ3: Добавил домашнее задание по теме Команда)
+=======
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.macro import MacroCommand
+from src.spacebattle.commands.put import PutCommand
+>>>>>>> ed1a774 (DZ4: Добавил домашнее задание по теме Команда)
 from src.spacebattle.exceptions import CommandException
 
 

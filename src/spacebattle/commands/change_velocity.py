@@ -2,6 +2,7 @@ import logging
 import math
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 from src.spacebattle.commands.command import Command
 from src.spacebattle.common import Angle, Vector
 
@@ -11,6 +12,11 @@ from src.spacebattle.common import Angle, Vector
 from . import Command
 
 >>>>>>> d8de736 (DZ3: Добавил домашнее задание по теме Команда)
+=======
+from src.spacebattle.commands.command import Command
+from src.spacebattle.common import Angle, Vector
+
+>>>>>>> ed1a774 (DZ4: Добавил домашнее задание по теме Команда)
 
 class ChangeVelocityCommand(Command):
     def __init__(self, vector: Vector, angle: Angle) -> None:
