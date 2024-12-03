@@ -14,19 +14,19 @@ DataForTest = namedtuple(
 _DATA_FOR_TEST = (
     DataForTest(
         location=Vector(1, 1),
-        velocity_after=Vector(0, 2),
+        velocity_after=Vector(1, 1),
         velocity=Vector(2, 0),
-        angle_before=Angle(0, 4),
-        angle_after=Angle(1, 4),
-        angular_velocity=Angle(1, 4),
+        angle_before=Angle(0, 8),
+        angle_after=Angle(1, 8),
+        angular_velocity=Angle(1, 8),
     ),
     DataForTest(
         location=Vector(1, 1),
         velocity_after=Vector(0, 0),
         velocity=Vector(0, 0),
-        angle_before=Angle(0, 4),
-        angle_after=Angle(1, 4),
-        angular_velocity=Angle(1, 4),
+        angle_before=Angle(0, 8),
+        angle_after=Angle(1, 8),
+        angular_velocity=Angle(1, 8),
     ),
 )
 
