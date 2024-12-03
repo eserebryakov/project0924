@@ -3,9 +3,7 @@ from collections import namedtuple
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.commands.change_velocity import ChangeVelocityCommand
-from src.spacebattle.commands.macro import MacroCommand
-from src.spacebattle.commands.rotate import RotateCommand
+from src.spacebattle.commands.macro import rotate_change_velocity_command
 from src.spacebattle.common import Angle, Vector
 from src.spacebattle.objects import MovingObject, RotatingObject
 
@@ -34,6 +32,8 @@ _DATA_FOR_TEST = (
 
 
 class TestRotationChangeVelocity:
+    """Тест проверяет цепочку команд: поворот, затем изменение вектора мгновенной скорости"""
+
     @pytest.fixture(params=_DATA_FOR_TEST)
     def data_for_test(self, request):
         return request.param
@@ -67,13 +67,8 @@ class TestRotationChangeVelocity:
 
         return MockObject()
 
-    @pytest.fixture
-    def macro_command(self, mock_object):
-        return MacroCommand(
-            [RotateCommand(mock_object), ChangeVelocityCommand(mock_object.velocity, mock_object.angular_velocity)]
-        )
-
-    def test_rotation_change_velocity(self, data_for_test, mock_object, macro_command):
+    def test_rotation_change_velocity(self, data_for_test, mock_object):
+        macro_command = rotate_change_velocity_command(mock_object)
         macro_command.execute()
         with soft_assertions():
             assert mock_object.location == data_for_test.location

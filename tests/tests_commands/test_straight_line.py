@@ -3,10 +3,7 @@ from collections import namedtuple
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.commands.burn_fuel import BurnFuelCommand
-from src.spacebattle.commands.check_fuel import CheckFuelCommand
-from src.spacebattle.commands.macro import MacroCommand
-from src.spacebattle.commands.move import MoveCommand
+from src.spacebattle.commands.macro import straight_line_command
 from src.spacebattle.common import Fuel, Vector
 from src.spacebattle.exceptions import CommandException
 from src.spacebattle.objects import BurningObject, MovingObject
@@ -36,6 +33,8 @@ _DATA_FOR_TEST = (
 
 
 class TestStraightLineCommand:
+    """Тест проверяет цепочку команд: проверка топлива, затем движение и расход топлива"""
+
     @pytest.fixture(params=_DATA_FOR_TEST)
     def data_for_test(self, request):
         return request.param
@@ -69,11 +68,8 @@ class TestStraightLineCommand:
 
         return MockObject()
 
-    @pytest.fixture
-    def macro_command(self, mock_object):
-        return MacroCommand([CheckFuelCommand(mock_object), MoveCommand(mock_object), BurnFuelCommand(mock_object)])
-
-    def test_straight_line(self, data_for_test, macro_command, mock_object):
+    def test_straight_line(self, data_for_test, mock_object):
+        macro_command = straight_line_command(mock_object)
         try:
             macro_command.execute()
         except CommandException:

@@ -12,7 +12,7 @@ class BurnFuelCommand(Command):
         self.log = logging.getLogger(__name__)
 
     def execute(self):
-        gf_ = self.__obj.get_fuel()
-        gfv_ = self.__obj.get_fuel_velocity()
-        self.log.debug(f"Сжигаем топливо {gf_} на {gfv_} и получаем кол-во топлива {gf_ - gfv_}")
-        self.__obj.set_fuel(gf_ - gfv_)
+        fuel_ = self.__obj.get_fuel()
+        fuel_velocity = self.__obj.get_fuel_velocity()
+        self.log.debug(f"Сжигаем топливо {fuel_} на {fuel_velocity} и получаем кол-во топлива {fuel_ - fuel_velocity}")
+        self.__obj.set_fuel(fuel_ - fuel_velocity)

@@ -6,6 +6,8 @@ from src.spacebattle.common import Angle, Vector
 
 
 class ChangeVelocityCommand(Command):
+    """Класс (команда) меняющий вектор мгновенной скорости в зависимости от угла"""
+
     def __init__(self, vector: Vector, angle: Angle) -> None:
         self.vector = vector
         self.angle = angle

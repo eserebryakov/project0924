@@ -7,15 +7,15 @@ from src.spacebattle.objects import BurningObject
 
 
 class CheckFuelCommand(Command):
-    """Класс реализующий проверку наличия топлива"""
+    """Класс (команда) реализующий проверку наличия топлива"""
 
     def __init__(self, obj: BurningObject) -> None:
         self.__obj = obj
         self.log = logging.getLogger(__name__)
 
     def execute(self):
-        gf_ = self.__obj.get_fuel()
-        gfv_ = self.__obj.get_fuel_velocity()
-        self.log.debug(f"Проверяем что топлива достаточно: {gf_} - {gfv_} = {gf_ - gfv_}")
-        if (gf_ - gfv_) <= Fuel(0):
+        fuel_ = self.__obj.get_fuel()
+        fuel_velocity = self.__obj.get_fuel_velocity()
+        self.log.debug(f"Проверяем что топлива достаточно: {fuel_} - {fuel_velocity} = {fuel_ - fuel_velocity}")
+        if (fuel_ - fuel_velocity) <= Fuel(0):
             raise CommandException("Недостаточно топлива")

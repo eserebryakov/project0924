@@ -58,6 +58,8 @@ class InvalidChangeFuelObject(BurningObject):
 
 
 class TestBurnFuel:
+    """Тест проверяющий команду сжигающую топливо"""
+
     def test_fuel_change(self):
         """
         П5 Тест проверяет, что для объекта, с кол-вом топлива 10 и сжигающего топливо со скоростью 3
