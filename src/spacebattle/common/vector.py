@@ -19,3 +19,6 @@ class Vector:
 
     def __str__(self) -> str:
         return f"({self.x}, {self.y})"
+
+    def __repr__(self) -> str:
+        return f"Vector(x={self.x}, y={self.y})"

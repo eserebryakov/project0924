@@ -21,3 +21,6 @@ class Angle:
 
     def __str__(self) -> str:
         return f"({self.d}, {self.n})"
+
+    def __repr__(self) -> str:
+        return f"Angle(d={self.d}, n={self.n})"

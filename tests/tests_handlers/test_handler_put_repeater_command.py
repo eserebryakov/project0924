@@ -3,7 +3,8 @@ from queue import Queue
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.commands import Command, RetryCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.retry import RetryCommand
 from src.spacebattle.exceptions.exception_handler import (
     ExceptionHandler,
     exception_handler_put_repeater_command,
