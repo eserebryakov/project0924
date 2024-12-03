@@ -1,6 +1,10 @@
 import logging
 
+<<<<<<< HEAD
 from src.spacebattle.commands.command import Command
+=======
+from src.spacebattle.commands import Command
+>>>>>>> d8de736 (DZ3: Добавил домашнее задание по теме Команда)
 from src.spacebattle.common import Fuel
 from src.spacebattle.exceptions import CommandException
 from src.spacebattle.objects import BurningObject

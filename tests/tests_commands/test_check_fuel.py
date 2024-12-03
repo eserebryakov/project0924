@@ -1,6 +1,10 @@
 import pytest
 
+<<<<<<< HEAD
 from src.spacebattle.commands.check_fuel import CheckFuelCommand
+=======
+from src.spacebattle.commands import CheckFuelCommand
+>>>>>>> d8de736 (DZ3: Добавил домашнее задание по теме Команда)
 from src.spacebattle.common import Fuel
 from src.spacebattle.exceptions import CommandException
 from src.spacebattle.objects import BurningObject

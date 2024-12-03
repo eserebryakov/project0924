@@ -3,10 +3,19 @@ from collections import namedtuple
 import pytest
 from assertpy import soft_assertions
 
+<<<<<<< HEAD
 from src.spacebattle.commands.burn_fuel import BurnFuelCommand
 from src.spacebattle.commands.check_fuel import CheckFuelCommand
 from src.spacebattle.commands.macro import MacroCommand
 from src.spacebattle.commands.move import MoveCommand
+=======
+from src.spacebattle.commands import (
+    BurnFuelCommand,
+    CheckFuelCommand,
+    MacroCommand,
+    MoveCommand,
+)
+>>>>>>> d8de736 (DZ3: Добавил домашнее задание по теме Команда)
 from src.spacebattle.common import Fuel, Vector
 from src.spacebattle.exceptions import CommandException
 from src.spacebattle.objects import BurningObject, MovingObject

@@ -3,9 +3,13 @@ from collections import namedtuple
 import pytest
 from assertpy import soft_assertions
 
+<<<<<<< HEAD
 from src.spacebattle.commands.change_velocity import ChangeVelocityCommand
 from src.spacebattle.commands.macro import MacroCommand
 from src.spacebattle.commands.rotate import RotateCommand
+=======
+from src.spacebattle.commands import ChangeVelocityCommand, MacroCommand, RotateCommand
+>>>>>>> d8de736 (DZ3: Добавил домашнее задание по теме Команда)
 from src.spacebattle.common import Angle, Vector
 from src.spacebattle.objects import MovingObject, RotatingObject
 
