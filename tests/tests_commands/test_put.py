@@ -2,7 +2,8 @@ from queue import Queue
 
 import pytest
 
-from src.spacebattle.commands import Command, PutCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.put import PutCommand
 
 
 class MockCommand(Command):
