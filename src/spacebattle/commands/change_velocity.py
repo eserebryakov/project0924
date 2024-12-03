@@ -15,8 +15,8 @@ class ChangeVelocityCommand(Command):
 
     def execute(self):
         velocity = math.sqrt(self.vector.x**2 + self.vector.y**2)
-        x_ = int(velocity * math.cos(math.radians(self.angle.d * (360 / self.angle.n))))
-        y_ = int(velocity * math.sin(math.radians(self.angle.d * (360 / self.angle.n))))
+        x_ = self.vector.x + int(velocity * math.cos(math.radians(self.angle.d * (360 / self.angle.n))))
+        y_ = self.vector.y + int(velocity * math.sin(math.radians(self.angle.d * (360 / self.angle.n))))
         self.log.debug(f"Меняем вектор мгновенной скорости с {self.vector} на {Vector(x_, y_)}")
         self.vector.x = x_
         self.vector.y = y_
