@@ -1,7 +1,7 @@
 import logging
 from queue import Queue
 
-from . import Command
+from src.spacebattle.commands.command import Command
 
 
 class PutCommand(Command):

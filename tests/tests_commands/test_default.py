@@ -1,6 +1,7 @@
 import pytest
 
-from src.spacebattle.commands import Command, DefaultCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.default import DefaultCommand
 
 
 class MockCommand(Command):

@@ -3,7 +3,9 @@ from queue import Queue
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.commands import Command, MacroCommand, PutCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.macro import MacroCommand
+from src.spacebattle.commands.put import PutCommand
 from src.spacebattle.exceptions import CommandException
 
 

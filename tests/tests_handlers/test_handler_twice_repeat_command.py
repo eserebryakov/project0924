@@ -4,7 +4,10 @@ from queue import Queue
 import pytest
 from assertpy import soft_assertions
 
-from src.spacebattle.commands import Command, Retry2Command, RetryCommand, WriteCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.retry import RetryCommand
+from src.spacebattle.commands.retry2 import Retry2Command
+from src.spacebattle.commands.write import WriteCommand
 from src.spacebattle.exceptions.exception_handler import (
     ExceptionHandler,
     exception_handler_twice_repeat_command,

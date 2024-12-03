@@ -1,9 +1,8 @@
 import logging
 import math
 
+from src.spacebattle.commands.command import Command
 from src.spacebattle.common import Angle, Vector
-
-from . import Command
 
 
 class ChangeVelocityCommand(Command):

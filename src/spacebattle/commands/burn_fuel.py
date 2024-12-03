@@ -1,6 +1,6 @@
 import logging
 
-from src.spacebattle.commands import Command
+from src.spacebattle.commands.command import Command
 from src.spacebattle.objects import BurningObject
 
 

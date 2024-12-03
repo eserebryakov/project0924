@@ -2,7 +2,9 @@ from queue import Queue
 
 import pytest
 
-from src.spacebattle.commands import Command, Retry2Command, RetryCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.retry import RetryCommand
+from src.spacebattle.commands.retry2 import Retry2Command
 
 
 class MockCommand(Command):

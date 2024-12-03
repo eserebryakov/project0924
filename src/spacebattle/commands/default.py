@@ -1,6 +1,6 @@
 import logging
 
-from . import Command
+from src.spacebattle.commands.command import Command
 
 
 class DefaultCommand(Command):

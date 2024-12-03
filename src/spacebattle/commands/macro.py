@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from . import Command
+from src.spacebattle.commands.command import Command
 
 
 class MacroCommand(Command):

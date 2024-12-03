@@ -1,6 +1,6 @@
 import pytest
 
-from src.spacebattle.commands import BurnFuelCommand
+from src.spacebattle.commands.burn_fuel import BurnFuelCommand
 from src.spacebattle.common import Fuel
 from src.spacebattle.objects import BurningObject
 

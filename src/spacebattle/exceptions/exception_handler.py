@@ -1,13 +1,11 @@
 from queue import Queue
 
-from src.spacebattle.commands import (
-    Command,
-    DefaultCommand,
-    PutCommand,
-    Retry2Command,
-    RetryCommand,
-    WriteCommand,
-)
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.default import DefaultCommand
+from src.spacebattle.commands.put import PutCommand
+from src.spacebattle.commands.retry import RetryCommand
+from src.spacebattle.commands.retry2 import Retry2Command
+from src.spacebattle.commands.write import WriteCommand
 
 
 class DefaultException(Exception):

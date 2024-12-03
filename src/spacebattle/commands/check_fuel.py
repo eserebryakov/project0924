@@ -1,6 +1,6 @@
 import logging
 
-from src.spacebattle.commands import Command
+from src.spacebattle.commands.command import Command
 from src.spacebattle.common import Fuel
 from src.spacebattle.exceptions import CommandException
 from src.spacebattle.objects import BurningObject

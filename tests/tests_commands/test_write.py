@@ -1,6 +1,7 @@
 import pytest
 
-from src.spacebattle.commands import Command, WriteCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.write import WriteCommand
 
 
 class MockCommand(Command):

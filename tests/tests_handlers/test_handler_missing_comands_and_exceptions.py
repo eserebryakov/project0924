@@ -2,7 +2,8 @@ import logging
 
 import pytest
 
-from src.spacebattle.commands import Command, WriteCommand
+from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.write import WriteCommand
 from src.spacebattle.exceptions.exception_handler import ExceptionHandler
 
 

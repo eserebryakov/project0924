@@ -1,6 +1,6 @@
 import pytest
 
-from src.spacebattle.commands import MoveCommand
+from src.spacebattle.commands.move import MoveCommand
 from src.spacebattle.common.vector import Vector
 from src.spacebattle.objects import MovingObject
 
