@@ -1,7 +1,7 @@
+from src.spacebattle.aold.register import RegisterCommand
 from src.spacebattle.commands.change_velocity import ChangeVelocityCommand
 from src.spacebattle.commands.macro import straight_line_command
 from src.spacebattle.commands.move import MoveCommand
-from src.spacebattle.commands.register import RegisterCommand
 from src.spacebattle.common.angle import Angle
 from src.spacebattle.common.fuel import Fuel
 from src.spacebattle.common.vector import Vector
@@ -52,16 +52,16 @@ class IoCContainer:
 
 print(storage)
 IoCContainer.resolve(
-    key="IoC.Register", storage=storage, name="Commands.Move", strategy=lambda _: MoveCommand(_)
+    key="IoC.Register", storage=storage, dependency="Commands.Move", strategy=lambda _: MoveCommand(_)
 ).execute()
 IoCContainer.resolve(
     key="IoC.Register",
     storage=storage,
-    name="Commands.ChangeVelocity",
+    dependency="Commands.ChangeVelocity",
     strategy=lambda *args, **kwargs: ChangeVelocityCommand(*args, **kwargs),
 ).execute()
 IoCContainer.resolve(
-    key="IoC.Register", storage=storage, name="Commands.StraightLine", strategy=lambda _: straight_line_command(_)
+    key="IoC.Register", storage=storage, dependency="Commands.StraightLine", strategy=lambda _: straight_line_command(_)
 ).execute()
 
 print(storage)
