@@ -1,5 +1,5 @@
 def _strategy(dependency, *args):
-    from src.spacebattle.commands.update_ioc_resolve_dependency_strategy import (
+    from src.spacebattle.aoid3.update_ioc_resolve_dependency_strategy import (
         UpdateIocResolveDependencyStrategyCommand,
     )
 

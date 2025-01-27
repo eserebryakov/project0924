@@ -1,4 +1,4 @@
-from src.spacebattle.scopes.strategy import _strategy
+from src.spacebattle.aoid3.strategy import _strategy
 
 
 class IoCContainer:

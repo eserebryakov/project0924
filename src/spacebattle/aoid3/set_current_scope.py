@@ -7,4 +7,4 @@ class SetCurrentScopeCommand(Command):
         self.scope = scope
 
     def execute(self):
-        self.init_command.scope = self.scope
+        self.init_command.current_scopes.value = self.scope
