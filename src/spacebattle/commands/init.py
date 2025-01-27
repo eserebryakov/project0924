@@ -1,8 +1,10 @@
-import threading
-
-from src.spacebattle.aoid3.set_current_scope import SetCurrentScopeCommand
+from src.spacebattle.commands.clear_current_scope import ClearCurrentScopeCommand
 from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.register_dependency import RegisterDependencyCommand
+from src.spacebattle.commands.set_current_scope import SetCurrentScopeCommand
 from src.spacebattle.exceptions.exeptions import ParentScopeMissingException
+from src.spacebattle.scopes.dependency_resolver import DependencyResolver
+from src.spacebattle.scopes.ioc import IoCContainer
 
 
 def _ioc_scope_parent():
@@ -20,22 +22,6 @@ def _ioc_scope_create(scope: dict, *args):
 
 
 class InitCommand(Command):
-    current_scopes = threading.local()
-    root_scope = dict()
-
-    def execute(self):
-        InitCommand.root_scope["IoC.Scope.Current.Set"] = lambda *args: SetCurrentScopeCommand(self, *args)
-        InitCommand.root_scope["IoC.Scope.Current"] = (
-            lambda *args: InitCommand.current_scopes.value
-            if hasattr(InitCommand.current_scopes, "value")
-            else InitCommand.root_scope
-        )
-        InitCommand.root_scope["IoC.Scope.Create.Empty"] = lambda: {}
-        InitCommand.root_scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(self.scope, args)
-
-
-"""
-class InitCommand(Command):
     def __init__(self):
         self.scope = dict()
 
@@ -45,7 +31,7 @@ class InitCommand(Command):
         self.scope["IoC.Scope.Current"] = lambda: self.scope
         self.scope["IoC.Scope.Parent"] = lambda: _ioc_scope_parent
         self.scope["IoC.Scope.Create.Empty"] = lambda: {}
-        self.scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(self.scope, args)
+        self.scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(self.scope, *args)
         self.scope["IoC.Register"] = lambda dependency, strategy: RegisterDependencyCommand(
             dependency=dependency, strategy=strategy
         )
@@ -53,4 +39,3 @@ class InitCommand(Command):
             "Update.Ioc.Resolve.Dependency.Strategy",
             lambda old_strategy: lambda dependency, *args: DependencyResolver(self.scope).resolve(dependency, *args),
         ).execute()
-"""

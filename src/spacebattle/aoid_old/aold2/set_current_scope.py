@@ -1,4 +1,5 @@
 from src.spacebattle.aold2.scope import Scope
+
 from src.spacebattle.commands.command import Command
 
 

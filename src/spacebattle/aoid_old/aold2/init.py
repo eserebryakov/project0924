@@ -1,6 +1,7 @@
 from src.spacebattle.aold2.dependency_resolver import DependencyResolver
 from src.spacebattle.aold2.ioc import IoCContainer
 from src.spacebattle.aold2.register_dependency import RegisterDependencyCommand
+
 from src.spacebattle.commands.command import Command
 from src.spacebattle.exceptions.exeptions import ParentScopeMissingException
 

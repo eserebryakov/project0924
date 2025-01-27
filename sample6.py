@@ -1,4 +1,4 @@
-from src.spacebattle.aoid3.init import InitCommand
+from src.spacebattle.aoid4.init import InitCommand
 
 # IoCContainer.resolve("test1", 2, 3)
 

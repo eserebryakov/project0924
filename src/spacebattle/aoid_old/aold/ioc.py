@@ -1,4 +1,5 @@
 from src.spacebattle.aold.register import RegisterCommand
+
 from src.spacebattle.commands.change_velocity import ChangeVelocityCommand
 from src.spacebattle.commands.macro import straight_line_command
 from src.spacebattle.commands.move import MoveCommand

@@ -1,8 +1,11 @@
 import threading
 
-from src.spacebattle.aoid3.clear_current_scope import ClearCurrentScopeCommand
-from src.spacebattle.aoid3.register_dependency import RegisterDependencyCommand
-from src.spacebattle.aoid3.set_current_scope import SetCurrentScopeCommand
+from src.spacebattle.aoid4.clear_current_scope import ClearCurrentScopeCommand
+from src.spacebattle.aoid4.dependency_resolver import DependencyResolver
+from src.spacebattle.aoid4.ioc import IoCContainer
+from src.spacebattle.aoid4.register_dependency import RegisterDependencyCommand
+from src.spacebattle.aoid4.set_current_scope import SetCurrentScopeCommand
+
 from src.spacebattle.commands.command import Command
 
 
@@ -43,18 +46,25 @@ class InitCommand(Command):
             if "IoC.Register" not in InitCommand.root_scope:
                 InitCommand.root_scope["IoC.Register"] = lambda args: RegisterDependencyCommand(args[0], args[1])
 
-            # Дальнейшая реализация зависимости и стратегии разрешения
-
+            # print(InitCommand.root_scope)
+            IoCContainer.resolve(
+                "Update.Ioc.Resolve.Dependency.Strategy",
+                lambda old_strategy: lambda dependency, args: DependencyResolver(
+                    InitCommand.current_scopes.value
+                    if hasattr(InitCommand.current_scopes, "value")
+                    else InitCommand.root_scope
+                ).resolve(dependency, *args),
+            ).execute()
             InitCommand.already_executed_successfully = True
 
     def create_scope(self, args):
-        creating_scope = {}
+        creating_scope = IoCContainer.resolve("IoC.Scope.Create.Empty")
 
         if args:
             parent_scope = args[0]
             creating_scope["IoC.Scope.Parent"] = lambda args: parent_scope
         else:
-            parent_scope = {}
+            parent_scope = IoCContainer.resolve("IoC.Scope.Current")
             creating_scope["IoC.Scope.Parent"] = lambda args: parent_scope
 
         return creating_scope

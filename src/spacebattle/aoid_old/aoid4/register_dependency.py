@@ -1,6 +1,7 @@
 from collections.abc import Callable
 
-from src.spacebattle.aold2.ioc import IoCContainer
+from src.spacebattle.aoid4.ioc import IoCContainer
+
 from src.spacebattle.commands.command import Command
 
 
@@ -10,5 +11,5 @@ class RegisterDependencyCommand(Command):
         self.strategy = strategy
 
     def execute(self):
-        current_scope = IoCContainer.scope["IoC.Scope.Current"]()
+        current_scope = IoCContainer.resolve("IoC.Scope.Current")
         current_scope[self.dependency] = self.strategy
