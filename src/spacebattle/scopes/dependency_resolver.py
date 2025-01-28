@@ -10,7 +10,6 @@ class DependencyResolver:
                 return dependency_resolver_strategy(*args)
             else:
                 parent_scope = dependencies["IoC.Scope.Parent"]
-                print(args)
                 dependencies = parent_scope(*args)
 
     """

@@ -14,28 +14,30 @@ def _ioc_scope_parent():
 def _ioc_scope_create(scope: dict, *args):
     creating_scope = scope["IoC.Scope.Create.Empty"]()
     if args:
-        creating_scope["IoC.Scope.Parent"] = args[0]
+        parent_scope = args[0]
+        creating_scope["IoC.Scope.Parent"] = lambda *args: parent_scope
     else:
         parent_scope = scope["IoC.Scope.Current"]
-        creating_scope["IoC.Scope.Parent"] = lambda: parent_scope
+        creating_scope["IoC.Scope.Parent"] = lambda *args: parent_scope
     return creating_scope
 
 
 class InitCommand(Command):
-    def __init__(self):
-        self.scope = dict()
+    scope = dict()
 
     def execute(self):
-        self.scope["IoC.Scope.Current.Set"] = lambda *args: SetCurrentScopeCommand(self, *args)
-        self.scope["IoC.Scope.Current.Clear"] = lambda: ClearCurrentScopeCommand(self)
-        self.scope["IoC.Scope.Current"] = lambda: self.scope
-        self.scope["IoC.Scope.Parent"] = lambda: _ioc_scope_parent
-        self.scope["IoC.Scope.Create.Empty"] = lambda: {}
-        self.scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(self.scope, *args)
-        self.scope["IoC.Register"] = lambda dependency, strategy: RegisterDependencyCommand(
+        InitCommand.scope["IoC.Scope.Current.Set"] = lambda *args: SetCurrentScopeCommand(*args)
+        InitCommand.scope["IoC.Scope.Current.Clear"] = lambda *args: ClearCurrentScopeCommand()
+        InitCommand.scope["IoC.Scope.Current"] = lambda *args: InitCommand.scope
+        InitCommand.scope["IoC.Scope.Parent"] = lambda *args: _ioc_scope_parent
+        InitCommand.scope["IoC.Scope.Create.Empty"] = lambda *args: {}
+        InitCommand.scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(InitCommand.scope, *args)
+        InitCommand.scope["IoC.Register"] = lambda dependency, strategy: RegisterDependencyCommand(
             dependency=dependency, strategy=strategy
         )
         IoCContainer.resolve(
             "Update.Ioc.Resolve.Dependency.Strategy",
-            lambda old_strategy: lambda dependency, *args: DependencyResolver(self.scope).resolve(dependency, *args),
+            lambda old_strategy: lambda dependency, *args: DependencyResolver(InitCommand.scope).resolve(
+                dependency, *args
+            ),
         ).execute()
