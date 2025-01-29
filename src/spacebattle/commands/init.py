@@ -21,21 +21,24 @@ def _ioc_scope_create(*args):
 
 
 class InitCommand(Command):
-    scope = dict()
+    root_scope = dict()
+    current_scope = dict()
 
     def execute(self):
-        InitCommand.scope["IoC.Scope.Current.Set"] = lambda *args: SetCurrentScopeCommand(*args)
-        InitCommand.scope["IoC.Scope.Current.Clear"] = lambda *args: ClearCurrentScopeCommand()
-        InitCommand.scope["IoC.Scope.Current"] = lambda *args: InitCommand.scope
-        InitCommand.scope["IoC.Scope.Parent"] = lambda *args: _ioc_scope_parent
-        InitCommand.scope["IoC.Scope.Create.Empty"] = lambda *args: {}
-        InitCommand.scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(*args)
-        InitCommand.scope["IoC.Register"] = lambda dependency, strategy: RegisterDependencyCommand(
+        InitCommand.root_scope["IoC.Scope.Current.Set"] = lambda *args: SetCurrentScopeCommand(*args)
+        InitCommand.root_scope["IoC.Scope.Current.Clear"] = lambda *args: ClearCurrentScopeCommand()
+        InitCommand.root_scope["IoC.Scope.Current"] = (
+            lambda *args: InitCommand.current_scope if InitCommand.current_scope else InitCommand.root_scope
+        )
+        InitCommand.root_scope["IoC.Scope.Parent"] = lambda *args: _ioc_scope_parent()
+        InitCommand.root_scope["IoC.Scope.Create.Empty"] = lambda *args: {}
+        InitCommand.root_scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(*args)
+        InitCommand.root_scope["IoC.Register"] = lambda dependency, strategy: RegisterDependencyCommand(
             dependency=dependency, strategy=strategy
         )
         IoCContainer.resolve(
             "Update.Ioc.Resolve.Dependency.Strategy",
-            lambda old_strategy: lambda dependency, *args: DependencyResolver(InitCommand.scope).resolve(
-                dependency, *args
-            ),
+            lambda old_strategy: lambda dependency, *args: DependencyResolver(
+                InitCommand.current_scope if InitCommand.current_scope else InitCommand.root_scope
+            ).resolve(dependency, *args),
         ).execute()

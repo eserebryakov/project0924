@@ -3,9 +3,9 @@ from src.spacebattle.commands.command import Command
 
 class SetCurrentScopeCommand(Command):
     def __init__(self, scope):
-        self.scope = scope
+        self._scope = scope
 
     def execute(self):
         from src.spacebattle.commands.init import InitCommand
 
-        InitCommand.scope = self.scope
+        InitCommand.current_scope = self._scope
