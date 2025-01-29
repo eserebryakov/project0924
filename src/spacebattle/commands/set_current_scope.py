@@ -8,4 +8,4 @@ class SetCurrentScopeCommand(Command):
     def execute(self):
         from src.spacebattle.commands.init import InitCommand
 
-        InitCommand.current_scope = self._scope
+        InitCommand.current_scope.value = self._scope

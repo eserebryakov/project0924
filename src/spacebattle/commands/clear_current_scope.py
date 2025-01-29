@@ -5,4 +5,4 @@ class ClearCurrentScopeCommand(Command):
     def execute(self):
         from src.spacebattle.commands.init import InitCommand
 
-        InitCommand.current_scope = dict()
+        InitCommand.current_scope.value = None

@@ -18,4 +18,11 @@ IoCContainer.resolve("IoC.Register", "test_1", lambda: 1).execute()
 
 new_scope_2 = IoCContainer.resolve("IoC.Scope.Create", new_scope_1)
 IoCContainer.resolve("IoC.Scope.Current.Set", new_scope_2).execute()
-IoCContainer.resolve("IoC.Register", "test_2", lambda: 1).execute()
+IoCContainer.resolve("IoC.Register", "test_2", lambda: 2).execute()
+
+
+print(IoCContainer.resolve("test_2"))
+print(IoCContainer.resolve("test_1"))
+print(IoCContainer.resolve("test_0"))
+print(IoCContainer.resolve("test_root"))
+print(IoCContainer.resolve("test_root_3"))
