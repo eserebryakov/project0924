@@ -14,9 +14,11 @@ def _ioc_scope_parent():
 def _ioc_scope_create(*args):
     creating_scope = IoCContainer.resolve("IoC.Scope.Create.Empty")
     if args:
-        creating_scope["IoC.Scope.Parent"] = lambda *a: args[0]
+        parent_scope = args[0]
+        creating_scope["IoC.Scope.Parent"] = lambda *a: parent_scope
     else:
-        creating_scope["IoC.Scope.Parent"] = lambda *a: IoCContainer.resolve("IoC.Scope.Current")
+        parent_scope = IoCContainer.resolve("IoC.Scope.Current")
+        creating_scope["IoC.Scope.Parent"] = lambda *a: parent_scope
     return creating_scope
 
 

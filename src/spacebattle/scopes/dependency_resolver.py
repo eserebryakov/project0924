@@ -1,6 +1,7 @@
 class DependencyResolver:
     def __init__(self, scope: dict):
         self._dependencies = scope
+        # print(self._dependencies)
 
     def resolve(self, dependency, *args):
         dependencies = self._dependencies
@@ -11,8 +12,3 @@ class DependencyResolver:
             else:
                 parent_scope = dependencies["IoC.Scope.Parent"]
                 dependencies = parent_scope(*args)
-
-    """
-    def resolve(self, dependency: str, *args):
-        return self._scope[dependency](*args)
-    """
