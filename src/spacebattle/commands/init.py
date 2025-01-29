@@ -11,14 +11,12 @@ def _ioc_scope_parent():
     raise ParentScopeMissingException("Отсутствует родительский scope")
 
 
-def _ioc_scope_create(scope: dict, *args):
-    creating_scope = scope["IoC.Scope.Create.Empty"]()
+def _ioc_scope_create(*args):
+    creating_scope = IoCContainer.resolve("IoC.Scope.Create.Empty")
     if args:
-        parent_scope = args[0]
-        creating_scope["IoC.Scope.Parent"] = lambda *args: parent_scope
+        creating_scope["IoC.Scope.Parent"] = lambda *a: args[0]
     else:
-        parent_scope = scope["IoC.Scope.Current"]
-        creating_scope["IoC.Scope.Parent"] = lambda *args: parent_scope
+        creating_scope["IoC.Scope.Parent"] = lambda *a: IoCContainer.resolve("IoC.Scope.Current")
     return creating_scope
 
 
@@ -31,7 +29,7 @@ class InitCommand(Command):
         InitCommand.scope["IoC.Scope.Current"] = lambda *args: InitCommand.scope
         InitCommand.scope["IoC.Scope.Parent"] = lambda *args: _ioc_scope_parent
         InitCommand.scope["IoC.Scope.Create.Empty"] = lambda *args: {}
-        InitCommand.scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(InitCommand.scope, *args)
+        InitCommand.scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(*args)
         InitCommand.scope["IoC.Register"] = lambda dependency, strategy: RegisterDependencyCommand(
             dependency=dependency, strategy=strategy
         )
