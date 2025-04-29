@@ -4,6 +4,7 @@ from src.spacebattle.commands.clear_current_scope import ClearCurrentScopeComman
 from src.spacebattle.commands.command import Command
 from src.spacebattle.commands.register_dependency import RegisterDependencyCommand
 from src.spacebattle.commands.set_current_scope import SetCurrentScopeCommand
+from src.spacebattle.common import constants
 from src.spacebattle.exceptions.exeptions import ParentScopeMissingException
 from src.spacebattle.scopes.dependency_resolver import DependencyResolver
 from src.spacebattle.scopes.ioc import IoCContainer
@@ -14,13 +15,13 @@ def _ioc_scope_parent():
 
 
 def _ioc_scope_create(*args):
-    creating_scope = IoCContainer.resolve("IoC.Scope.Create.Empty")
+    creating_scope = IoCContainer.resolve(constants.IOC_SCOPE_CREATE_EMPTY)
     if args:
         parent_scope = args[0]
-        creating_scope["IoC.Scope.Parent"] = lambda *a: parent_scope
+        creating_scope[constants.IOC_SCOPE_PARENT] = lambda *a: parent_scope
     else:
-        parent_scope = IoCContainer.resolve("IoC.Scope.Current")
-        creating_scope["IoC.Scope.Parent"] = lambda *a: parent_scope
+        parent_scope = IoCContainer.resolve(constants.IOC_SCOPE_CURRENT)
+        creating_scope[constants.IOC_SCOPE_PARENT] = lambda *a: parent_scope
     return creating_scope
 
 
@@ -34,21 +35,21 @@ class InitCommand(Command):
             return
 
         with threading.Lock():
-            InitCommand.root_scope["IoC.Scope.Current.Set"] = lambda *args: SetCurrentScopeCommand(*args)
-            InitCommand.root_scope["IoC.Scope.Current.Clear"] = lambda *args: ClearCurrentScopeCommand()
-            InitCommand.root_scope["IoC.Scope.Current"] = (
+            InitCommand.root_scope[constants.IOC_SCOPE_CURRENT_SET] = lambda *args: SetCurrentScopeCommand(*args)
+            InitCommand.root_scope[constants.IOC_SCOPE_CURRENT_CLEAR] = lambda *args: ClearCurrentScopeCommand()
+            InitCommand.root_scope[constants.IOC_SCOPE_CURRENT] = (
                 lambda *args: InitCommand.current_scope.value
                 if hasattr(InitCommand.current_scope, "value")
                 else InitCommand.root_scope
             )
-            InitCommand.root_scope["IoC.Scope.Parent"] = lambda *args: _ioc_scope_parent()
-            InitCommand.root_scope["IoC.Scope.Create.Empty"] = lambda *args: {}
-            InitCommand.root_scope["IoC.Scope.Create"] = lambda *args: _ioc_scope_create(*args)
-            InitCommand.root_scope["IoC.Register"] = lambda dependency, strategy: RegisterDependencyCommand(
+            InitCommand.root_scope[constants.IOC_SCOPE_PARENT] = lambda *args: _ioc_scope_parent()
+            InitCommand.root_scope[constants.IOC_SCOPE_CREATE_EMPTY] = lambda *args: {}
+            InitCommand.root_scope[constants.IOC_SCOPE_CREATE] = lambda *args: _ioc_scope_create(*args)
+            InitCommand.root_scope[constants.IOC_REGISTER] = lambda dependency, strategy: RegisterDependencyCommand(
                 dependency=dependency, strategy=strategy
             )
             IoCContainer.resolve(
-                "Update.Ioc.Resolve.Dependency.Strategy",
+                constants.UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY,
                 lambda old_strategy: lambda dependency, *args: DependencyResolver(
                     InitCommand.current_scope.value
                     if hasattr(InitCommand.current_scope, "value")

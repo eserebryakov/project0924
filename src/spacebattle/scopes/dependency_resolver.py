@@ -1,3 +1,6 @@
+from src.spacebattle.common import constants
+
+
 class DependencyResolver:
     def __init__(self, scope: dict):
         self._dependencies = scope
@@ -10,5 +13,5 @@ class DependencyResolver:
                 dependency_resolver_strategy = dependencies[dependency]
                 return dependency_resolver_strategy(*args)
             else:
-                parent_scope = dependencies["IoC.Scope.Parent"]
+                parent_scope = dependencies[constants.IOC_SCOPE_PARENT]
                 dependencies = parent_scope(*args)

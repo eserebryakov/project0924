@@ -1,0 +1,8 @@
+IOC_SCOPE_CURRENT_SET = "IoC.Scope.Current.Set"
+IOC_SCOPE_CURRENT_CLEAR = "IoC.Scope.Current.Clear"
+IOC_SCOPE_CURRENT = "IoC.Scope.Current"
+IOC_SCOPE_PARENT = "IoC.Scope.Parent"
+IOC_SCOPE_CREATE_EMPTY = "IoC.Scope.Create.Empty"
+IOC_SCOPE_CREATE = "IoC.Scope.Create"
+IOC_REGISTER = "IoC.Register"
+UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY = "Update.Ioc.Resolve.Dependency.Strategy"
