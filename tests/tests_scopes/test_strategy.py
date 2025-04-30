@@ -1,0 +1,22 @@
+import pytest
+
+from src.spacebattle.common.constants import UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY
+from src.spacebattle.scopes.ioc import IoC
+from src.spacebattle.scopes.strategy import _strategy
+
+
+class TestStrategy:
+    """Тест проверяющий работу стратегии."""
+
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.strategy = _strategy
+
+    def test_successful_update_strategy(self):
+        self.strategy(UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY, lambda _: "test_strategy").execute()
+        assert IoC.strategy == "test_strategy"
+
+    def test_unsuccessful_update_strategy(self):
+        """Тест проверяющий неуспешное обновление стратегии."""
+        with pytest.raises(KeyError):
+            self.strategy("KEY", lambda: 1)
