@@ -7,7 +7,7 @@ from src.spacebattle.commands.set_current_scope import SetCurrentScopeCommand
 from src.spacebattle.common import constants
 from src.spacebattle.exceptions.exeptions import ParentScopeMissingException
 from src.spacebattle.scopes.dependency_resolver import DependencyResolver
-from src.spacebattle.scopes.ioc import IoCContainer
+from src.spacebattle.scopes.ioc import IoC
 
 
 def _ioc_scope_parent():
@@ -15,12 +15,12 @@ def _ioc_scope_parent():
 
 
 def _ioc_scope_create(*args):
-    creating_scope = IoCContainer.resolve(constants.IOC_SCOPE_CREATE_EMPTY)
+    creating_scope = IoC.resolve(constants.IOC_SCOPE_CREATE_EMPTY)
     if args:
         parent_scope = args[0]
         creating_scope[constants.IOC_SCOPE_PARENT] = lambda *a: parent_scope
     else:
-        parent_scope = IoCContainer.resolve(constants.IOC_SCOPE_CURRENT)
+        parent_scope = IoC.resolve(constants.IOC_SCOPE_CURRENT)
         creating_scope[constants.IOC_SCOPE_PARENT] = lambda *a: parent_scope
     return creating_scope
 
@@ -48,7 +48,7 @@ class InitCommand(Command):
             InitCommand.root_scope[constants.IOC_REGISTER] = lambda dependency, strategy: RegisterDependencyCommand(
                 dependency=dependency, strategy=strategy
             )
-            IoCContainer.resolve(
+            IoC.resolve(
                 constants.UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY,
                 lambda old_strategy: lambda dependency, *args: DependencyResolver(
                     InitCommand.current_scope.value

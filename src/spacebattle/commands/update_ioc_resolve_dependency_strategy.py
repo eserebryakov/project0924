@@ -6,6 +6,6 @@ class UpdateIocResolveDependencyStrategyCommand(Command):
         self._update_ioc_strategy = updater
 
     def execute(self):
-        from src.spacebattle.scopes.ioc import IoCContainer
+        from src.spacebattle.scopes.ioc import IoC
 
-        IoCContainer.strategy = self._update_ioc_strategy(IoCContainer.strategy)
+        IoC.strategy = self._update_ioc_strategy(IoC.strategy)

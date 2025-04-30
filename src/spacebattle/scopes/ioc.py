@@ -1,9 +1,9 @@
 from src.spacebattle.scopes.strategy import _strategy
 
 
-class IoCContainer:
+class IoC:
     strategy = _strategy
 
     @staticmethod
     def resolve(dependency: str, *args):
-        return IoCContainer.strategy(dependency, *args)
+        return IoC.strategy(dependency, *args)
