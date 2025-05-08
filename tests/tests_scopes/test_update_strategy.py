@@ -5,7 +5,7 @@ from src.spacebattle.scopes.ioc import IoC
 from src.spacebattle.scopes.strategy import _strategy
 
 
-class TestStrategy:
+class TestUpdateStrategy:
     """Тест проверяющий работу стратегии."""
 
     @pytest.fixture(autouse=True)
@@ -19,4 +19,4 @@ class TestStrategy:
     def test_unsuccessful_update_strategy(self):
         """Тест проверяющий неуспешное обновление стратегии."""
         with pytest.raises(KeyError):
-            self.strategy("KEY", lambda: 1)
+            self.strategy("UNAVAILABLE_KEY")
