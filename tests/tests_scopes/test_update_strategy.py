@@ -8,15 +8,20 @@ from src.spacebattle.scopes.strategy import _strategy
 class TestUpdateStrategy:
     """Тест проверяющий работу стратегии."""
 
-    @pytest.fixture(autouse=True)
-    def setup(self):
+    @pytest.fixture(scope="function")
+    def strategy(self, request):
         self.strategy = _strategy
 
-    def test_successful_update_strategy(self):
+        def teardown():
+            IoC.strategy = _strategy
+
+        request.addfinalizer(teardown)
+
+    def test_successful_update_strategy(self, strategy):
         self.strategy(UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY, lambda _: "test_strategy").execute()
         assert IoC.strategy == "test_strategy"
 
-    def test_unsuccessful_update_strategy(self):
+    def test_unsuccessful_update_strategy(self, strategy):
         """Тест проверяющий неуспешное обновление стратегии."""
         with pytest.raises(KeyError):
             self.strategy("UNAVAILABLE_KEY")
