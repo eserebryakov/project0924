@@ -14,7 +14,7 @@ from src.spacebattle.scopes.strategy import _strategy
 
 
 class TestInitCommand:
-    """Тест проверяет базову настройку команды init и корректную имплементацию базовых функций"""
+    """Тест проверяет базовую настройку команды init и корректную имплементацию базовых функций"""
 
     @pytest.fixture(scope="function")
     def initial_state(self, request):
@@ -110,3 +110,8 @@ class TestInitCommand:
         InitCommand().execute()
         IoC.resolve(constants.IOC_REGISTER, "Test.Dependency", lambda: 1).execute()
         assert IoC.resolve("Test.Dependency") == 1
+
+    def test_unsuccessful_init_command_dependency(self, initial_state):
+        InitCommand().execute()
+        with pytest.raises(ParentScopeMissingException):
+            assert IoC.resolve("UNAVAILABLE_DEPENDENCY")
