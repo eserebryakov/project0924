@@ -11,7 +11,7 @@ class TestSetCurrentScopeCommand:
     def setup(self):
         self.set_command = SetCurrentScopeCommand(scope="test_scope")
 
-    def test_clear_current_scope(self):
+    def test_set_current_scope(self):
         """П4. Тест проверяет команду, которая устанавливает текущий scope."""
         self.set_command.execute()
         assert InitCommand.current_scope.value == "test_scope"

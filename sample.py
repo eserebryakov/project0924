@@ -1,6 +1,5 @@
 import threading
 
-from src.spacebattle.commands.clear_current_scope import ClearCurrentScopeCommand
 from src.spacebattle.commands.init import InitCommand
 
 
@@ -8,7 +7,7 @@ def task():
     init_command = InitCommand()
     init_command.execute()
 
-    ClearCurrentScopeCommand()
+    # ClearCurrentScopeCommand()
     print(init_command.root_scope)
 
 

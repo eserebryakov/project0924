@@ -15,4 +15,5 @@ class TestClearCurrentScopeCommand:
     def test_clear_current_scope(self):
         """П4. Тест проверяет команду, которая очищает текущий scope."""
         self.clear_command.execute()
-        assert not InitCommand.current_scope.value
+        with pytest.raises(AttributeError):
+            assert InitCommand.current_scope.value
