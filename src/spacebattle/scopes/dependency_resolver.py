@@ -4,7 +4,6 @@ from src.spacebattle.common import constants
 class DependencyResolver:
     def __init__(self, scope: dict):
         self._dependencies = scope
-        # print(self._dependencies)
 
     def resolve(self, dependency, *args):
         dependencies = self._dependencies
