@@ -11,14 +11,19 @@ IOC_TEST_DEPENDENCY = "IoC.Test.Dependency"
 class TestRegisterDependencyCommand:
     """Тест проверяющий команду, регистрирующую зависимость."""
 
-    @pytest.fixture(autouse=True)
-    def setup(self):
+    @pytest.fixture(scope="function")
+    def original_dependencies(self, request):
         InitCommand().execute()
         self.register_dependency = RegisterDependencyCommand(
             dependency=IOC_TEST_DEPENDENCY, strategy=lambda: "TestStrategy"
         )
 
-    def test_register_dependency(self):
+        def teardown():
+            del IoC.resolve(IOC_SCOPE_CURRENT)[IOC_TEST_DEPENDENCY]
+
+        request.addfinalizer(teardown)
+
+    def test_register_dependency(self, original_dependencies):
         """П4. Тест проверяет команду, которая регистрирует зависимость."""
         self.register_dependency.execute()
         assert IoC.resolve(IOC_SCOPE_CURRENT)[IOC_TEST_DEPENDENCY]() == "TestStrategy"
