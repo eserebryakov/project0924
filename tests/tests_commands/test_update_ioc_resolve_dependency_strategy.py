@@ -1,4 +1,5 @@
 import pytest
+from assertpy import soft_assertions
 
 from src.spacebattle.commands.update_ioc_resolve_dependency_strategy import (
     UpdateIocResolveDependencyStrategyCommand,
@@ -26,4 +27,6 @@ class TestUpdateIocResolveDependencyStrategyCommand:
     def test_update_ioc_resolve_dependency_strategy(self, original_strategy):
         """П4. Тест проверяет команду, которая обновляет стратегию."""
         self.update_ioc_resolve_dependency_strategy.execute()
-        assert IoC.strategy == "test_strategy"
+        with soft_assertions():
+            assert IoC.strategy == "test_strategy"
+            assert self.update_ioc_resolve_dependency_strategy._update_ioc_strategy is self.upd_strategy
