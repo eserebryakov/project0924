@@ -28,6 +28,8 @@ class TestClearCurrentScopeCommand:
             InitCommand.current_scope = threading.local()
             InitCommand.already_executed_successfully = False
             IoC.strategy = _strategy
+            if hasattr(InitCommand.current_scope, "value"):
+                del InitCommand.current_scope.value
 
         request.addfinalizer(teardown)
 
