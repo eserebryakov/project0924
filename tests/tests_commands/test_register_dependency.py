@@ -1,3 +1,5 @@
+import threading
+
 import pytest
 
 from src.spacebattle.commands.init import InitCommand
@@ -13,13 +15,20 @@ class TestRegisterDependencyCommand:
 
     @pytest.fixture(scope="function")
     def original_dependencies(self, request):
+        print(InitCommand.root_scope)
+        print(InitCommand.current_scope)
+        print(InitCommand.already_executed_successfully)
+        print(IoC.strategy)
         InitCommand().execute()
         self.register_dependency = RegisterDependencyCommand(
             dependency=IOC_TEST_DEPENDENCY, strategy=lambda: "TestStrategy"
         )
 
         def teardown():
-            del IoC.resolve(IOC_SCOPE_CURRENT)[IOC_TEST_DEPENDENCY]
+            # del IoC.resolve(IOC_SCOPE_CURRENT)[IOC_TEST_DEPENDENCY]
+            InitCommand.root_scope = dict()
+            InitCommand.current_scope = threading.local()
+            InitCommand.already_executed_successfully = False
 
         request.addfinalizer(teardown)
 

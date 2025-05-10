@@ -7,7 +7,7 @@ from src.spacebattle.scopes.dependency_resolver import DependencyResolver
 
 
 def _ioc_scope_parent():
-    raise ParentScopeMissingException("Отсутствует родительский scope")
+    raise ParentScopeMissingException()
 
 
 TEST_SCOPE_CHILD_1 = "TEST_SCOPE_CHILD_1"
