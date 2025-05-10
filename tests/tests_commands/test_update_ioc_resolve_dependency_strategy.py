@@ -5,14 +5,15 @@ from src.spacebattle.commands.update_ioc_resolve_dependency_strategy import (
     UpdateIocResolveDependencyStrategyCommand,
 )
 from src.spacebattle.scopes.ioc import IoC
+from src.spacebattle.scopes.strategy import _strategy
 
 
 class TestUpdateIocResolveDependencyStrategyCommand:
     """Тест проверяющий команду, обновляющую стратегию"""
 
     @pytest.fixture(scope="function")
-    def original_strategy(self, request):
-        self.orig_strategy = IoC.strategy
+    def initial_state(self, request):
+        IoC.strategy = _strategy
         self.upd_strategy = lambda x: x
         IoC.strategy = "test_strategy"
         self.update_ioc_resolve_dependency_strategy = UpdateIocResolveDependencyStrategyCommand(
@@ -20,11 +21,11 @@ class TestUpdateIocResolveDependencyStrategyCommand:
         )
 
         def teardown():
-            IoC.strategy = self.orig_strategy
+            IoC.strategy = _strategy
 
         request.addfinalizer(teardown)
 
-    def test_update_ioc_resolve_dependency_strategy(self, original_strategy):
+    def test_update_ioc_resolve_dependency_strategy(self, initial_state):
         """П4. Тест проверяет команду, которая обновляет стратегию."""
         self.update_ioc_resolve_dependency_strategy.execute()
         with soft_assertions():

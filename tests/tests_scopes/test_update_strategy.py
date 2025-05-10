@@ -9,7 +9,8 @@ class TestUpdateStrategy:
     """Тест проверяющий работу стратегии."""
 
     @pytest.fixture(scope="function")
-    def original_strategy(self, request):
+    def initial_state(self, request):
+        IoC.strategy = _strategy
         self.strategy = _strategy
 
         def teardown():
@@ -17,11 +18,11 @@ class TestUpdateStrategy:
 
         request.addfinalizer(teardown)
 
-    def test_successful_update_strategy(self, original_strategy):
+    def test_successful_update_strategy(self, initial_state):
         self.strategy(UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY, lambda _: "test_strategy").execute()
         assert IoC.strategy == "test_strategy"
 
-    def test_unsuccessful_update_strategy(self, original_strategy):
+    def test_unsuccessful_update_strategy(self, initial_state):
         """Тест проверяющий неуспешное обновление стратегии."""
         with pytest.raises(KeyError):
             self.strategy("UNAVAILABLE_KEY")
