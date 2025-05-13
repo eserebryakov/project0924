@@ -4,3 +4,7 @@ class ZeroValueError(Exception):
 
 class CommandException(Exception):
     pass
+
+
+class ParentScopeMissingException(Exception):
+    ...
