@@ -31,9 +31,13 @@ class MockObject(ABC):
         ...
 
 
-MOCK_OBJECT = {
-    "value": 5,
-}
+code_ = """
+for k in range(5):
+    print(k)
+print("hello")
+"""
+
+MOCK_OBJECT = {"value": 5, "any_method": code_}
 
 
 class TestMockObjectAdapter:
@@ -82,6 +86,7 @@ class TestMockObjectAdapter:
 
     def test_any_method(self, mock_object_adapter):
         assert isinstance(type(mock_object_adapter.any_method), type(classmethod))
+        mock_object_adapter.any_method()
 
     @pytest.mark.parametrize("attribute", ["get_value", "set_value", "obj", "any_method"])
     def test_available_attributes(self, mock_object_adapter, attribute, register_mock_object_attributes):

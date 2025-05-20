@@ -20,7 +20,7 @@ def auto_generate_adapter(class_, obj):
                         f"{class_.__name__}.{key_}.set", self, key_, value
                     ).execute()
                 else:
-                    attrs[member] = lambda self: getattr(self, member)
+                    attrs[member] = lambda self: setattr(self, member, member_)
                 attrs["__init__"] = lambda self, value: setattr(self, "obj", value)
             return type.__new__(cls, name, bases, attrs)
 
