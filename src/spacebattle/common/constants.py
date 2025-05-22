@@ -7,3 +7,7 @@ IOC_SCOPE_CREATE = "IoC.Scope.Create"
 IOC_REGISTER = "IoC.Register"
 IOC_HANDLE_EXCEPTION = "IoC.Handle.Exception"
 UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY = "Update.Ioc.Resolve.Dependency.Strategy"
+
+ADAPTER = "Adapter"
+PREFIX_GET = "get_"
+PREFIX_SET = "set_"
