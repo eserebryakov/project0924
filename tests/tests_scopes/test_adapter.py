@@ -31,13 +31,7 @@ class MockObject(ABC):
         ...
 
 
-code_ = """
-for k in range(5):
-    print(k)
-print("hello")
-"""
-
-MOCK_OBJECT = {"value": 5, "any_method": code_}
+MOCK_OBJECT = {"value": 5}
 
 
 class TestMockObjectAdapter:
