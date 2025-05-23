@@ -6,3 +6,7 @@ IOC_SCOPE_CREATE_EMPTY = "IoC.Scope.Create.Empty"
 IOC_SCOPE_CREATE = "IoC.Scope.Create"
 IOC_REGISTER = "IoC.Register"
 UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY = "Update.Ioc.Resolve.Dependency.Strategy"
+
+ADAPTER = "Adapter"
+PREFIX_GET = "get_"
+PREFIX_SET = "set_"
