@@ -9,4 +9,4 @@ class InterpretCommand(Command):
         self.args = args
 
     def execute(self):
-        ...
+        print(self.game_id, self.object_id, self.operation_id, self.args)

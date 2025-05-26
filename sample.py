@@ -16,5 +16,4 @@ response = session.post(
     json=message.model_dump_json(),
 )
 print(response.status_code)
-print(response.text)
-print(response.json())
+# print(response.json())
