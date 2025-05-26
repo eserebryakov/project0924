@@ -1,9 +1,10 @@
-from dataclasses import dataclass
+from typing import Any
+
+from pydantic import BaseModel
 
 
-@dataclass
-class Message:
+class Message(BaseModel):
     game_id: str
     object_id: str
     operation_id: str
-    args: str
+    args: dict[str, Any]
