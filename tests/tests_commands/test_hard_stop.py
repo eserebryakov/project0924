@@ -3,6 +3,7 @@ import time
 from queue import Queue
 
 import pytest
+from assertpy import soft_assertions
 
 from src.spacebattle.commands.command import Command
 from src.spacebattle.commands.handle_exception import HandleExceptionCommand
@@ -57,4 +58,6 @@ class TestHardStopCommand:
     def test_hard_stop(self, initial_state):
         self.server.start()
         time.sleep(0.1)
-        assert self.queue_.qsize() == 2
+        with soft_assertions():
+            assert not self.server.is_running
+            assert self.queue_.qsize() == 2
