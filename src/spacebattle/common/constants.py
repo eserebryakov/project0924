@@ -14,7 +14,14 @@ ADAPTER = "Adapter"
 PREFIX_GET = "get_"
 PREFIX_SET = "set_"
 
+GAME_OBJECT = "GameObject"
+
 # Commands
 COMMAND_MOVING_STRAIGHT_LINE = "Command.Moving.Straight.Line"
+COMMAND_CREATE_OBJECT = "Command.Create.Object"
 COMMAND_SET_ATTRIBUTE_VALUE = "Command.Set.Attribute.Value"
 COMMAND_PUT_COMMAND_TO_QUEUE = "Command.Put.Command.To.Queue"
+
+# Operations
+OPERATION_MOVING_STRAIGHT_LINE = "Operation.Moving.Straight.Line"
+OPERATION_CREATE_OBJECT = "Operation.Create.Object"
