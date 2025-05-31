@@ -5,11 +5,24 @@ IOC_SCOPE_PARENT = "IoC.Scope.Parent"
 IOC_SCOPE_CREATE_EMPTY = "IoC.Scope.Create.Empty"
 IOC_SCOPE_CREATE = "IoC.Scope.Create"
 IOC_REGISTER = "IoC.Register"
-IOC_QUEUE = "IoC.Queue"
 UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY = "Update.Ioc.Resolve.Dependency.Strategy"
 IOC_HANDLE_EXCEPTION = "IoC.Handle.Exception"
 IOC_THREAD = "IoC.Thread"
+IOC_QUEUE = "IoC.Queue"
+IOC_GAME_OBJECT = "IoC.GameObject"
+GAME_OBJECT = "GameObject"
 
 ADAPTER = "Adapter"
 PREFIX_GET = "get_"
 PREFIX_SET = "set_"
+
+# Commands
+COMMAND_SET_INITIAL_SPEED_VALUE = "Command.Set.Initial.Speed.Value"
+COMMAND_MOVING_STRAIGHT_LINE = "Command.Moving.Straight.Line"
+COMMAND_CREATE_OBJECT = "Command.Create.Object"
+COMMAND_SET_ATTRIBUTE_VALUE = "Command.Set.Attribute.Value"
+COMMAND_PUT_COMMAND_TO_QUEUE = "Command.Put.Command.To.Queue"
+
+# Operations
+OPERATION_MOVING_STRAIGHT_LINE = "Operation.Moving.Straight.Line"
+OPERATION_CREATE_OBJECT = "Operation.Create.Object"
