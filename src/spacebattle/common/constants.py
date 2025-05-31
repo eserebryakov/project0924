@@ -8,7 +8,13 @@ IOC_REGISTER = "IoC.Register"
 UPDATE_IOC_RESOLVE_DEPENDENCY_STRATEGY = "Update.Ioc.Resolve.Dependency.Strategy"
 IOC_HANDLE_EXCEPTION = "IoC.Handle.Exception"
 IOC_THREAD = "IoC.Thread"
+IOC_QUEUE = "IoC.Queue"
 
 ADAPTER = "Adapter"
 PREFIX_GET = "get_"
 PREFIX_SET = "set_"
+
+# Commands
+COMMAND_MOVING_STRAIGHT_LINE = "Command.Moving.Straight.Line"
+COMMAND_SET_ATTRIBUTE_VALUE = "Command.Set.Attribute.Value"
+COMMAND_PUT_COMMAND_TO_QUEUE = "Command.Put.Command.To.Queue"
