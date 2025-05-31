@@ -3,6 +3,7 @@ import sys
 
 import pytest
 from assertpy import soft_assertions
+from pydantic import ValidationError
 
 from src.spacebattle.common.angle import Angle
 
@@ -48,7 +49,7 @@ class TestAngle:
     )
     def test_unacceptable_values(self, x, y):
         """Тест проверяет недопустимые значения угла d, n (по типу данных)"""
-        with pytest.raises(AssertionError):
+        with pytest.raises((ValidationError, AssertionError)):
             assert self.angle(x, y)
 
     def test_direction_is_greater_than_or_equals_number_of_parts(self):

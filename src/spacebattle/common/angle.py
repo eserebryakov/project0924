@@ -1,8 +1,13 @@
 from assertpy import soft_assertions
+from pydantic import BaseModel
 
 
-class Angle:
+class Angle(BaseModel):
+    d: int = 0
+    n: int = 1
+
     def __init__(self, d: int = 0, n: int = 1) -> None:
+        super().__init__(d=d, n=n)
         with soft_assertions():
             assert type(d) is int
             assert type(n) is int

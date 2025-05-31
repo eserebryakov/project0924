@@ -1,6 +1,7 @@
 import sys
 
 import pytest
+from pydantic import ValidationError
 
 from src.spacebattle.common.fuel import Fuel
 
@@ -23,7 +24,7 @@ _UNACCEPTABLE_VALUES = (
 )
 
 
-class TestAngle:
+class TestFuel:
     @pytest.fixture(autouse=True)
     def setup(self):
         self.fuel = Fuel
@@ -36,7 +37,7 @@ class TestAngle:
     @pytest.mark.parametrize("value", _UNACCEPTABLE_VALUES, ids=[f"x={value}" for value in _UNACCEPTABLE_VALUES])
     def test_unacceptable_values(self, value):
         """Тест проверяет недопустимые значения для величины топлива"""
-        with pytest.raises(AssertionError):
+        with pytest.raises((ValidationError, AssertionError)):
             assert self.fuel(value)
 
     def test_acceptable_add_fuel(self):

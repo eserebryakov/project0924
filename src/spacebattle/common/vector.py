@@ -1,8 +1,13 @@
 from assertpy import soft_assertions
+from pydantic import BaseModel
 
 
-class Vector:
+class Vector(BaseModel):
+    x: int = 0
+    y: int = 0
+
     def __init__(self, x: int = 0, y: int = 0) -> None:
+        super().__init__(x=x, y=y)
         with soft_assertions():
             assert type(x) is int
             assert type(y) is int

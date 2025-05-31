@@ -3,6 +3,7 @@ import sys
 
 import pytest
 from assertpy import soft_assertions
+from pydantic import ValidationError
 
 from src.spacebattle.common.vector import Vector
 
@@ -48,7 +49,7 @@ class TestVector:
     )
     def test_unacceptable_values(self, x, y):
         """Тест проверяет недопустимые значения координат x, y (по типу данных)"""
-        with pytest.raises(AssertionError):
+        with pytest.raises((ValidationError, AssertionError)):
             assert self.vector(x, y)
 
     def test_acceptable_add_vector(self):

@@ -1,8 +1,12 @@
 from assertpy import soft_assertions
+from pydantic import BaseModel
 
 
-class Fuel:
+class Fuel(BaseModel):
+    value: int = 0
+
     def __init__(self, value: int) -> None:
+        super().__init__(value=value)
         with soft_assertions():
             assert type(value) is int
         self.value = value
