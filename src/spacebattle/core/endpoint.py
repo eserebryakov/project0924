@@ -20,7 +20,6 @@ def start_game():
     InitCommand().execute()
     start_command = StartCommand(game_id=game_id)
     start_command.execute()
-    print(InitCommand.root_scope)
     return jsonify({"game_id": game_id}), 200
 
 
@@ -38,6 +37,10 @@ def receive_messages():
     interpret_command = InterpretCommand(**message.model_dump())
     queue_ = IoC.resolve(f"{constants.IOC_QUEUE}.{message.game_id}")
     queue_.put(interpret_command)
+
+    import time
+
+    time.sleep(0.1)
     return jsonify({}), 200
 
 

@@ -1,4 +1,3 @@
-import sys
 from uuid import uuid4
 
 from requests import Session
@@ -38,7 +37,8 @@ response = session.post(
     json=message.model_dump_json(),
 )
 
-sys.exit(1)
+print(OBJECTS[0])
+
 """
 message = Message(
     game_id=game_id,

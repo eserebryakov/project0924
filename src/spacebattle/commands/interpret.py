@@ -42,6 +42,5 @@ class InterpretCommand(Command):
 
         IoC.resolve(constants.COMMAND_SET_ATTRIBUTE_VALUE, object_, "velocity", self.__args).execute()
         command = IoC.resolve(constants.COMMAND_MOVING_STRAIGHT_LINE, mov_adapter)
-
         queue = IoC.resolve(f"{constants.IOC_QUEUE}.{self.__game_id}")
         IoC.resolve(constants.COMMAND_PUT_COMMAND_TO_QUEUE, command, queue).execute()

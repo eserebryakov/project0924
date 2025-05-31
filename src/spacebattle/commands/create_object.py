@@ -10,8 +10,6 @@ class CreateObjectCommand(Command):
         self.__object = obj
 
     def execute(self):
-        print("create object")
-        print(self.__object_id, self.__object)
         IoC.resolve(
             constants.IOC_REGISTER,
             constants.GAME_OBJECT,
