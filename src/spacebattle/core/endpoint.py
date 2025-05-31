@@ -41,6 +41,7 @@ def receive_messages():
     import time
 
     time.sleep(0.1)
+    print(IoC.resolve(constants.GAME_OBJECT, message.game_id, message.object_id))
     return jsonify({}), 200
 
 

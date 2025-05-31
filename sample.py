@@ -19,6 +19,20 @@ response = session.post(url="http://127.0.0.1:5000/api/games/start")
 game_id = response.json()["game_id"]
 object_id = OBJECTS[0]["object_id"]
 
+message = Message(
+    game_id=game_id,
+    object_id=object_id,
+    operation_id=constants.OPERATION_CREATE_OBJECT,
+    args=OBJECTS[0],
+)
+
+response = session.post(
+    url="http://127.0.0.1:5000/api/games/messages",
+    json=message.model_dump_json(),
+)
+
+
+"""
 response = session.post(
     url=f"http://127.0.0.1:5000/api/games/{game_id}/object",
     json=OBJECTS[0],
@@ -38,6 +52,7 @@ response = session.post(
 )
 
 print(OBJECTS[0])
+"""
 
 """
 message = Message(

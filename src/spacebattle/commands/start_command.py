@@ -1,6 +1,7 @@
 from queue import Queue
 
 from src.spacebattle.commands.command import Command
+from src.spacebattle.commands.create_object import CreateObjectCommand
 from src.spacebattle.commands.move import MoveCommand
 from src.spacebattle.commands.put import PutCommand
 from src.spacebattle.commands.set_attribute_value import SetAttributeValueCommand
@@ -38,4 +39,7 @@ class StartCommand(Command):
         ).execute()
         IoC.resolve(
             constants.IOC_REGISTER, constants.COMMAND_PUT_COMMAND_TO_QUEUE, lambda *args: PutCommand(*args)
+        ).execute()
+        IoC.resolve(
+            constants.IOC_REGISTER, constants.COMMAND_CREATE_OBJECT, lambda *args: CreateObjectCommand(*args)
         ).execute()
