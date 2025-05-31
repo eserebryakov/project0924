@@ -1,5 +1,5 @@
 import json
-import time
+from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
 
 from flask import Flask, jsonify, request
@@ -12,6 +12,7 @@ from src.spacebattle.core.message import Message
 from src.spacebattle.scopes.ioc import IoC
 
 app = Flask(__name__)
+executor = ThreadPoolExecutor()
 
 
 @app.route("/api/games/start", methods=["POST"])
@@ -29,9 +30,14 @@ def receive_messages():
     message = Message(**data)
     interpret_command = InterpretCommand(**message.model_dump())
     queue_ = IoC.resolve(f"{constants.IOC_QUEUE}.{message.game_id}")
-    queue_.put(interpret_command)
-    time.sleep(0.1)
-    message.args = IoC.resolve(constants.GAME_OBJECT, message.game_id, message.object_id)
+
+    def process_message():
+        queue_.put(interpret_command)
+        return IoC.resolve(constants.GAME_OBJECT, message.game_id, message.object_id)
+
+    future = executor.submit(process_message)
+    result = future.result()
+    message.args = result
     return jsonify(message.model_dump()), 200
 
 
