@@ -39,5 +39,9 @@ class Context:
     def __init__(self):
         self.__state = NormalState()
 
+    @property
+    def state(self):
+        return self.__state
+
     def handle(self, command: Command):
         self.__state = self.__state.handle(command)

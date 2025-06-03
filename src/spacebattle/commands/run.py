@@ -19,7 +19,8 @@ class RunCommand(Command):
             try:
                 command.execute()
             except Exception as e:
-                IoC.resolve(constants.IOC_HANDLE_EXCEPTION, command, e).execute()
+                s = IoC.resolve(constants.IOC_HANDLE_EXCEPTION, command, e)
+                s.execute()
             self.__context.handle(command)
 
         self.__server.set_behaviour(behaviour)
