@@ -21,7 +21,7 @@ class MoveToCommand(Command):
 
         def behaviour():
             command = self.__server.queue.get()
-            if isinstance(command, (MoveToCommand, HardStopCommand, RunCommand)):
+            if isinstance(command, _COMMANDS):
                 try:
                     command.execute()
                 except Exception as e:
@@ -31,3 +31,10 @@ class MoveToCommand(Command):
             self.__context.handle(command)
 
         self.__server.set_behaviour(behaviour)
+
+
+_COMMANDS = (
+    MoveToCommand,
+    HardStopCommand,
+    RunCommand,
+)
