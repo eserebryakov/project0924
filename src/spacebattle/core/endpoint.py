@@ -13,7 +13,7 @@ from src.spacebattle.core.message import Message
 from src.spacebattle.scopes.ioc import IoC
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "secret-space-battle-key"
+app.config["JWT_SECRET_KEY"] = "secret-space-battle-key1"
 app.config["JWT_TOKEN_LOCATION"] = ["headers"]
 app.config["JWT_HEADER_NAME"] = "Authorization"
 app.config["JWT_HEADER_TYPE"] = "Bearer"
