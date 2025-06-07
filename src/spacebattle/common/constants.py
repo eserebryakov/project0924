@@ -25,3 +25,13 @@ COMMAND_PUT_COMMAND_TO_QUEUE = "Command.Put.Command.To.Queue"
 # Operations
 OPERATION_MOVING_STRAIGHT_LINE = "Operation.Moving.Straight.Line"
 OPERATION_CREATE_OBJECT = "Operation.Create.Object"
+
+# JWT
+JWT_SECRET_KEY = "JWT_SECRET_KEY"
+JWT_TOKEN_LOCATION = "JWT_TOKEN_LOCATION"
+JWT_HEADER_NAME = "JWT_HEADER_NAME"
+JWT_HEADER_TYPE = "JWT_HEADER_TYPE"
+SECRET_KEY = "secret-space-battle-key"
+HEADERS = "headers"
+AUTHORIZATION = "Authorization"
+BEARER = "Bearer"
