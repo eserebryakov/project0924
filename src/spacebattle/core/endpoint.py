@@ -63,7 +63,6 @@ def receive_messages():
 def receive_messages_sec():
     claims = get_jwt()
     user_game_id = claims["game_id"]
-    claims["user_id"]
 
     data = json.loads(request.get_json())
     message = Message(**data)
