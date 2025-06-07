@@ -1,4 +1,5 @@
 import json
+import time
 from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
 
@@ -47,14 +48,10 @@ def receive_messages():
     message = Message(**data)
     interpret_command = InterpretCommand(**message.model_dump())
     queue_ = IoC.resolve(f"{constants.IOC_QUEUE}.{message.game_id}")
-
-    def process_message():
-        queue_.put(interpret_command)
-        return IoC.resolve(constants.GAME_OBJECT, message.game_id, message.object_id)
-
-    future = executor.submit(process_message)
-    result = future.result()
-    message.args = result
+    queue_.put(interpret_command)
+    time.sleep(0.1)
+    obj_ = IoC.resolve(constants.GAME_OBJECT, message.game_id, message.object_id)
+    message.args = obj_
     return jsonify(message.model_dump()), 200
 
 
@@ -73,14 +70,10 @@ def receive_messages_sec():
 
     interpret_command = InterpretCommand(**message.model_dump())
     queue_ = IoC.resolve(f"{constants.IOC_QUEUE}.{message.game_id}")
-
-    def process_message():
-        queue_.put(interpret_command)
-        return IoC.resolve(constants.GAME_OBJECT, message.game_id, message.object_id)
-
-    future = executor.submit(process_message)
-    result = future.result()
-    message.args = result
+    queue_.put(interpret_command)
+    time.sleep(0.1)
+    obj_ = IoC.resolve(constants.GAME_OBJECT, message.game_id, message.object_id)
+    message.args = obj_
     return jsonify(message.model_dump()), 200
 
 

@@ -65,4 +65,5 @@ class TestEndpoint:
             url="http://127.0.0.1:5000/api/games/messages",
             json=message.model_dump_json(),
         )
+        print(response.text)
         assert response.json()["args"]["location"] == Vector(102, 102).model_dump()
