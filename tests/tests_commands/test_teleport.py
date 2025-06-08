@@ -10,10 +10,10 @@ def _load_plugin(plugin_path: str):
     return plugin
 
 
-teleport_command_plugin = _load_plugin("../../src/spacebattle/commands/teleport.py")
+teleport_command_plugin = _load_plugin("src/spacebattle/commands/teleport.py")
 TeleportCommand = teleport_command_plugin.TeleportCommand
 
-teleportable_object_plugin = _load_plugin("../../src/spacebattle/objects/teleportable.py")
+teleportable_object_plugin = _load_plugin("src/spacebattle/objects/teleportable.py")
 TeleportableObject = teleportable_object_plugin.TeleportableObject
 
 
