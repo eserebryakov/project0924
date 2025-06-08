@@ -38,7 +38,6 @@ class TestSuccessfulIdentity:
         response = self.session.post(
             url="http://127.0.0.1:5001/api/auth/token", json={"game_id": self.game_id, "user_id": self.user_id_1}
         )
-        print(response.text)
         self.token = response.json()["access_token"]
         self.object_id = TEST_OBJECT["object_id"]
 
