@@ -21,6 +21,10 @@ COMMAND_MOVING_STRAIGHT_LINE = "Command.Moving.Straight.Line"
 COMMAND_CREATE_OBJECT = "Command.Create.Object"
 COMMAND_SET_ATTRIBUTE_VALUE = "Command.Set.Attribute.Value"
 COMMAND_PUT_COMMAND_TO_QUEUE = "Command.Put.Command.To.Queue"
+COMMAND_BURN_FUEL = "Command.Burn.Fuel"
+COMMAND_CHECK_FUEL = "Command.Check.Fuel"
+COMMAND_MACRO = "Command.Macro"
+COMMAND_INJECTABLE = "Command.Injectable"
 
 # Operations
 OPERATION_MOVING_STRAIGHT_LINE = "Operation.Moving.Straight.Line"
@@ -35,3 +39,11 @@ SECRET_KEY = "secret-space-battle-key"
 HEADERS = "headers"
 AUTHORIZATION = "Authorization"
 BEARER = "Bearer"
+
+# Rules
+RULE_SPACESHIP_MOVE = "Rule.Spaceship.Move"
+
+# Others
+SPACESHIP_MOVE = "Spaceship.Move"
+MOVE = "Move"
+BURN = "Burn"
