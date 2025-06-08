@@ -1,18 +1,43 @@
-
 name: ValidatePullRequestCode
+
 on:
   pull_request:
     branches: [main]
+
 jobs:
   RunTests:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+
       - name: Set up python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11.8"
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Start Identity Service
+        run: |
+          docker run -d \
+            --name identity_service \
+            -p 5001:5001 \
+            -v $PWD:/app \
+            -w /app \
+            -e FLASK_APP=src/spacebattle/core/identity.py \
+            python:3.11-slim \
+            sh -c "pip install flask flask-jwt-extended && flask run --port=5001 --host=0.0.0.0"
+
+      - name: Wait for Identity Service
+        run: |
+          until curl -f http://localhost:5001/api/auth/token || [ $? -eq 22 ]; do
+            echo "Waiting for identity service to start..."
+            sleep 5
+          done
+
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
@@ -20,32 +45,33 @@ jobs:
           virtualenvs-in-project: true
           virtualenvs-path: .venv
           installer-parallel: true
+
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
-      - name: Run both Flask applications
+
+      - name: Run Flask endpoint application
         run: |
           source .venv/bin/activate
           export PYTHONPATH=${{ github.workspace }}
-
           export FLASK_APP=src/spacebattle/core/endpoint.py
           flask run --port=5000 &
           echo $! > flask_endpoint.pid
-          export FLASK_APP=src/spacebattle/core/identity.py
-          flask run --port=5001 & 
-          echo $! > flask_identity.pid
           sleep 5
+
       - name: Run tests
         run: |
           source .venv/bin/activate
           export PYTHONPATH=${{ github.workspace }}
           pytest -vs tests/
+
       - name: Run coverage
         run: |
           source .venv/bin/activate
           export PYTHONPATH=${{ github.workspace }}
           pytest --cov=src
-      - name: Stop Flask application
+
+      - name: Cleanup
         run: |
           kill $(cat flask_endpoint.pid) || true
-          kill $(cat flask_identity.pid) || true
+          docker stop identity_service || true
+          docker rm identity_service || true
