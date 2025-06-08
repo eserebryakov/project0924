@@ -73,6 +73,14 @@ class TestVector:
         with pytest.raises(AssertionError):
             assert self.vector(1, 1) == self.vector(2, 1)
 
+    def test_acceptable_more_vector(self):
+        """Тест проверяет успешную операцию 'больше' векторов"""
+        assert self.vector(1, 1) > self.vector(0, 0)
+
+    def test_acceptable_less_vector(self):
+        """Тест проверяет успешную операцию 'меньше' векторов"""
+        assert self.vector(0, 0) < self.vector(1, 1)
+
     def test_valid_data_display(self):
         """Тест проверяет корректное отображение вектора на экране"""
         assert str(Vector(1, 2)) == "(1, 2)"
