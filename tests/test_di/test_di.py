@@ -1,6 +1,5 @@
 import threading
 import time
-from queue import Queue
 from uuid import uuid4
 
 import pytest
@@ -11,6 +10,7 @@ from src.spacebattle.commands.hard_stop import HardStopCommand
 from src.spacebattle.commands.init import InitCommand
 from src.spacebattle.commands.start_command import StartCommand
 from src.spacebattle.common import Fuel, Vector, constants
+from src.spacebattle.core.dependencies import spaceship_move
 from src.spacebattle.objects.burning import BurningObject
 from src.spacebattle.objects.moving import MovingObject
 from src.spacebattle.scopes.ioc import IoC
@@ -43,19 +43,6 @@ class ValidObject(MovingObject, BurningObject):
         return self.__fuel_velocity
 
 
-def _spaceship_move(*args, queue: Queue):
-    commands_list = IoC.resolve(constants.RULE_SPACESHIP_MOVE)
-    commands = []
-    for command in commands_list:
-        commands.append(IoC.resolve(command, *args))
-    macro = IoC.resolve(constants.COMMAND_MACRO, commands)
-    result = IoC.resolve(constants.COMMAND_INJECTABLE)
-    repeater = IoC.resolve(constants.COMMAND_PUT_COMMAND_TO_QUEUE, result, queue)
-    internal_macro_command = IoC.resolve(constants.COMMAND_MACRO, [macro, repeater])
-    result.inject(internal_macro_command)
-    return result
-
-
 class TestDi:
     @pytest.fixture(scope="function")
     def initial_state(self, request):
@@ -80,7 +67,7 @@ class TestDi:
         IoC.resolve(
             constants.IOC_REGISTER,
             constants.SPACESHIP_MOVE,
-            lambda *args, queue_=server.queue: _spaceship_move(*args, queue=queue_),
+            lambda *args, queue_=server.queue: spaceship_move(*args, queue=queue_),
         ).execute()
         IoC.resolve(
             constants.IOC_REGISTER, constants.IOC_HANDLE_EXCEPTION, lambda c_, e_: HandleExceptionCommand(c_, e_)
