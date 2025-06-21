@@ -25,6 +25,12 @@ COMMAND_BURN_FUEL = "Command.Burn.Fuel"
 COMMAND_CHECK_FUEL = "Command.Check.Fuel"
 COMMAND_MACRO = "Command.Macro"
 COMMAND_INJECTABLE = "Command.Injectable"
+COMMAND_HARD_STOP = "Command.Hard.Stop"
+
+# Actions
+ACTION = "action"
+ACTION_HARD_STOP = "Action.Hard.Stop"
+ACTION_MOVE = "Action.Move"
 
 # Operations
 OPERATION_MOVING_STRAIGHT_LINE = "Operation.Moving.Straight.Line"
@@ -47,3 +53,5 @@ RULE_SPACESHIP_MOVE = "Rule.Spaceship.Move"
 SPACESHIP_MOVE = "Spaceship.Move"
 MOVE = "Move"
 BURN = "Burn"
+OBJECT_ID = "object_id"
+GAME_ID = "game_id"

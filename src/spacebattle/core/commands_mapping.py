@@ -1,6 +1,7 @@
 from src.spacebattle.commands.burn_fuel import BurnFuelCommand
 from src.spacebattle.commands.check_fuel import CheckFuelCommand
 from src.spacebattle.commands.create_object import CreateObjectCommand
+from src.spacebattle.commands.hard_stop import HardStopCommand
 from src.spacebattle.commands.injectable_command import InjectableCommand
 from src.spacebattle.commands.macro import MacroCommand
 from src.spacebattle.commands.move import MoveCommand
@@ -17,4 +18,10 @@ COMMANDS = {
     constants.COMMAND_CHECK_FUEL: CheckFuelCommand,
     constants.COMMAND_MACRO: MacroCommand,
     constants.COMMAND_INJECTABLE: InjectableCommand,
+    constants.COMMAND_HARD_STOP: HardStopCommand,
+}
+
+ACTIONS = {
+    constants.ACTION_HARD_STOP: constants.COMMAND_HARD_STOP,
+    constants.ACTION_MOVE: constants.COMMAND_MOVING_STRAIGHT_LINE,
 }
